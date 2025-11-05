@@ -1,0 +1,42 @@
+Date: 07-10-2025 & 14-10-2025
+
+Aim
+To write a given input string to a file named output.txt.
+To read the file contents back into the program.
+To count uppercase and lowercase letters and print their counts.
+Algorithm
+Read a line of text from the user.
+Write the text to a file named output.txt.
+Read the content back from output.txt.
+Initialize upper=0, lower=0.
+For each character, increment upper/lower counters appropriately.
+Print upper on first line and lower on second line.
+End program.
+Program (Java)
+import java.util.*;
+import java.nio.file.*;
+public class CaseCountFileIO {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        Path p = Paths.get("output.txt");
+        Files.write(p, s.getBytes());
+        String content = Files.readString(p);
+        int upper = 0, lower = 0;
+        for (char ch : content.toCharArray()){
+            if (Character.isUpperCase(ch)) upper++;
+            else if (Character.isLowerCase(ch)) lower++;
+        }
+        System.out.println(upper);
+        System.out.println(lower);
+        sc.close();
+    }
+}
+
+
+Sample Output
+3
+8
+Result
+Successfully persisted and retrieved string via file I/O.
+Accurately counted uppercase and lowercase letters.
