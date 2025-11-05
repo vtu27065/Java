@@ -1,0 +1,47 @@
+Date: 19-08-2025
+
+Aim
+To compute regular percentage as (obtained / total) × 100.
+To override calculation for scholarship student with +5% bonus.
+To display both percentages to two decimal places.
+Algorithm
+Read total marks n and obtained marks m (integers).
+Define base class with calculatePercentage(n, m).
+Compute base = (m * 100.0) / n.
+Define subclass overriding calculatePercentage to add +5.
+Create objects of both classes and compute values.
+Print values in required labeled format with two decimals.
+End program.
+Program (Java)
+import java.util.*;
+class Student {
+    public double calculatePercentage(int total, int obtained){
+        return (obtained * 100.0) / total;
+    }
+}
+class ScholarshipStudent extends Student {
+    @Override
+    public double calculatePercentage(int total, int obtained){
+        return super.calculatePercentage(total, obtained) + 5.0;
+    }
+}
+public class PercentageOverride {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        int m = Integer.parseInt(sc.nextLine().trim());
+        Student s = new Student();
+        ScholarshipStudent ss = new ScholarshipStudent();
+        System.out.printf("Student Percentage: %.2f%%%n", s.calculatePercentage(n, m));
+        System.out.printf("Scholarship Student Percentage: %.2f%%%n", ss.calculatePercentage(n, m));
+        sc.close();
+    }
+}
+
+
+Sample Output
+Student Percentage: 90.00%
+Scholarship Student Percentage: 95.00%
+Result
+Demonstrated method overriding for specialized calculation.
+Printed both regular and scholarship percentages as specified.
