@@ -1,0 +1,69 @@
+Date: 25-10-2025 & 28-10-2025
+
+Aim
+To create two threads that compute squares for odd numbers and cubes for even numbers.
+To synchronize threads to print outputs alternately in order from 1..n.
+To demonstrate inter-thread coordination using wait/notify.
+Algorithm
+Read integer n (upper limit).
+Use a shared object with current number i=1.
+Thread Square: when i is odd, print square and increment i; else wait.
+Thread Cube: when i is even, print cube and increment i; else wait.
+Use synchronized block with wait/notifyAll for coordination.
+Stop when i > n and notify waiting threads to exit.
+Join threads and end program.
+Program (Java)
+import java.util.*;
+public class SquaresCubesThreads {
+    static class Shared {
+        int i = 1, n;
+        Shared(int n){ this.n = n; }
+    }
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Shared s = new Shared(n);
+        Thread square = new Thread(() -> {
+            synchronized (s) {
+                while (s.i <= s.n) {
+                    try {
+                        if (s.i % 2 == 1) {
+                            System.out.println("Square: " + (s.i * s.i));
+                            s.i++;
+                            s.notifyAll();
+                        } else s.wait();
+                    } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                }
+                s.notifyAll();
+            }
+        });
+        Thread cube = new Thread(() -> {
+            synchronized (s) {
+                while (s.i <= s.n) {
+                    try {
+                        if (s.i % 2 == 0) {
+                            System.out.println("Cube: " + (s.i * s.i * s.i));
+                            s.i++;
+                            s.notifyAll();
+                        } else s.wait();
+                    } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                }
+                s.notifyAll();
+            }
+        });
+        square.start();
+        cube.start();
+        square.join();
+        cube.join();
+        sc.close();
+    }
+}
+
+
+
+Sample Output
+Square: 1
+Cube: 8
+Result
+Demonstrated coordinated multithreading output sequence.
+Printed squares for odd and cubes for even up to n.
