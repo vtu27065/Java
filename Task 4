@@ -1,0 +1,52 @@
+Date: 12-08-2025
+
+Aim
+To model a product with price and a discounted variant.
+To compute selling price as price × (1 − discountRate).
+To validate discount rate and print result to two decimals.
+Algorithm
+Read price p (double) and discount rate d (double).
+If d > 1, print "Not applicable" and exit.
+Else compute sellingPrice = p * (1 - d).
+Round to two decimals for display.
+Print as "Rs. X" where X is formatted value.
+Use inheritance: Product (price) and DiscountedProduct (discountRate).
+End program.
+Program (Java)
+import java.util.*;
+class Product {
+    public double price;
+    public Product(double price){ this.price = price; }
+}
+class DiscountedProduct extends Product {
+    private double discountRate;
+    public DiscountedProduct(double price, double discountRate){
+        super(price);
+        this.discountRate = discountRate;
+    }
+    public double calculateSellingPrice(){
+        return price * (1 - discountRate);
+    }
+}
+public class ProductDiscountApp {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        double p = Double.parseDouble(sc.nextLine().trim());
+        double d = Double.parseDouble(sc.nextLine().trim());
+        if (d > 1.0){
+            System.out.println("Not applicable");
+        } else {
+            DiscountedProduct dp = new DiscountedProduct(p, d);
+            System.out.printf("Rs. %.2f%n", dp.calculateSellingPrice());
+        }
+        sc.close();
+    }
+}
+
+
+Sample Output
+Input: 50.00 and 0.20
+Output: Rs. 40.00
+Result
+Applied percentage discount correctly on base price.
+Handled invalid discount rate (>1) with proper message.
