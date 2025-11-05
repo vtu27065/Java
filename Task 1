@@ -1,0 +1,39 @@
+DAte: 22-07-2025
+
+Aim
+To read five subject marks as integers from the user.
+To compute the integer average of the five marks.
+To display whether the student has passed (avg ≥ 50) or failed.
+Algorithm
+Read five space-separated integers representing marks in five subjects.
+Accumulate the sum of the five marks.
+Compute integer average = sum / 5.
+Print "Average score: <avg>".
+If avg ≥ 50, print "The student has passed".
+Else, print "The student has failed".
+End program.
+Program (Java)
+import java.util.*;
+public class AveragePassFail {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt(), c = sc.nextInt(), d = sc.nextInt(), e = sc.nextInt();
+        int sum = a + b + c + d + e;
+        int avg = sum / 5;
+        System.out.println("Average score: " + avg);
+        if (avg >= 50) {
+            System.out.println("The student has passed");
+        } else {
+            System.out.println("The student has failed");
+        }
+        sc.close();
+    }
+}
+
+
+Sample Output
+Average score: 70
+The student has passed
+Result
+Successfully computed the average of five marks.
+Correctly classified pass/fail based on the average ≥ 50.
