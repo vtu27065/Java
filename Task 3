@@ -1,0 +1,49 @@
+Date: 05-08-2025
+
+
+Aim
+To accept birth year and current year as inputs.
+To count leap years in the inclusive range.
+To display the total number of leap years lived.
+Algorithm
+Read birthYear and currentYear (integers).
+Initialize count = 0.
+Loop year from birthYear to currentYear inclusive.
+A year is leap if (year % 4 == 0 && year % 100 != 0) or (year % 400 == 0).
+If leap, increment count.
+After loop, print count.
+End program.
+Program (Java)
+import java.util.*;
+class AgeCalculatorFunctions {
+    private int birthYear, currentYear;
+    public AgeCalculatorFunctions(int birthYear, int currentYear){
+        this.birthYear = birthYear;
+        this.currentYear = currentYear;
+    }
+    public int countLeapYears(){
+        int count = 0;
+        for (int y = birthYear; y <= currentYear; y++) {
+            if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) count++;
+        }
+        return count;
+    }
+}
+public class LeapYearsLived {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int birth = Integer.parseInt(sc.nextLine().trim());
+        int curr = Integer.parseInt(sc.nextLine().trim());
+        AgeCalculatorFunctions a = new AgeCalculatorFunctions(birth, curr);
+        System.out.println(a.countLeapYears());
+        sc.close();
+    }
+}
+
+
+Sample Output
+Input: 1990 and 2023
+Output: 8
+Result
+Counted leap years using the standard divisibility rules.
+Displayed total leap years in the given inclusive range.
