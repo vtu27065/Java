@@ -1,0 +1,45 @@
+Date: 09-09-2025 & 16-09-2025
+
+
+Aim
+To compute factorial of a non-negative integer using recursion.
+To throw IllegalArgumentException if input is negative.
+To handle invalid integer inputs via InputMismatchException.
+Algorithm
+Read an integer N using Scanner.
+If N < 0, throw IllegalArgumentException with given message.
+Else compute factorial recursively: f(0)=1; f(n)=n×f(n−1).
+Print the factorial value.
+Catch InputMismatchException and print given message.
+Catch IllegalArgumentException and print its message.
+End program.
+Program (Java)
+import java.util.*;
+public class SafeFactorial {
+    static long fact(int n){
+        if (n == 0) return 1;
+        return n * fact(n - 1);
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        try {
+            int n = sc.nextInt();
+            if (n < 0) throw new IllegalArgumentException("Error: Input must be non-negative");
+            System.out.println(fact(n));
+        } catch (InputMismatchException e){
+            System.out.println("Error: Input must be a valid integer.");
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        } finally {
+            sc.close();
+        }
+    }
+}
+
+
+Sample Output
+Input: 5
+Output: 120
+Result
+Handled both invalid type and negative value inputs gracefully.
+Produced correct factorial for valid non-negative input.
