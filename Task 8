@@ -1,0 +1,38 @@
+Date: 23-09-2025 & 30-09-2025
+
+Aim
+To accept a sentence and a target word as input.
+To count exact whole-word occurrences (case-sensitive).
+To print the number of matches found in the sentence.
+Algorithm
+Read the full line (sentence) and then the target word.
+Compile a regex with word boundaries for the target word.
+Iterate over matcher.find() to count matches.
+The match is case-sensitive by default.
+Store and increment a counter for each match.
+After scanning, print the count.
+End program.
+Program (Java)
+import java.util.*;
+import java.util.regex.*;
+public class WordCount {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String line = sc.nextLine();
+        String word = sc.nextLine();
+        String pattern = "\\b" + Pattern.quote(word) + "\\b";
+        Matcher m = Pattern.compile(pattern).matcher(line);
+        int count = 0;
+        while (m.find()) count++;
+        System.out.println(count);
+        sc.close();
+    }
+}
+
+
+Sample Output
+Input word: happy
+Output: 3
+Result
+Counted occurrences using regex word boundaries.
+Maintained case sensitivity as per requirement.
