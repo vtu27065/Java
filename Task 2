@@ -1,0 +1,61 @@
+Date: 29-07-2025
+
+Aim
+To model a ride booking using a class with id, name, and distance.
+To compute fare with base fare and per-km charges.
+To apply 10% discount when distance > 20 km and display results.
+Algorithm
+Read N (number of bookings).
+For each booking, read bookingId (int), customerName (String), distance (double).
+Compute fare = 50 + 10 * distance.
+If distance > 20, apply 10% discount on fare.
+Round final fare to one decimal place for display.
+Print booking details in the specified format.
+Repeat for all bookings.
+Program (Java)
+import java.util.*;
+class Booking {
+    private int bookingId;
+    private String customerName;
+    private double distance;
+    public Booking(int bookingId, String customerName, double distance) {
+        this.bookingId = bookingId;
+        this.customerName = customerName;
+        this.distance = distance;
+    }
+    public void setBookingId(int bookingId){ this.bookingId = bookingId; }
+    public void setCustomerName(String customerName){ this.customerName = customerName; }
+    public void setDistance(double distance){ this.distance = distance; }
+    public int getBookingId(){ return bookingId; }
+    public String getCustomerName(){ return customerName; }
+    public double getDistance(){ return distance; }
+    public double finalFare(){
+        double fare = 50 + 10 * distance;
+        if (distance > 20) fare *= 0.9;
+        return fare;
+    }
+}
+public class CityCab {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        for (int i = 0; i < n; i++) {
+            int id = Integer.parseInt(sc.nextLine().trim());
+            String name = sc.nextLine();
+            double dist = Double.parseDouble(sc.nextLine().trim());
+            Booking b = new Booking(id, name, dist);
+            System.out.println("Booking ID: " + b.getBookingId());
+            System.out.println("Customer Name: " + b.getCustomerName());
+            System.out.printf("Final Fare: %.1f%n", b.finalFare());
+        }
+        sc.close();
+    }
+}
+
+
+Sample Output
+Booking ID: 5678
+Final Fare: 270.0
+Result
+Implemented encapsulation with getters/setters for booking data.
+Calculated and displayed discounted fare as per business rule.
