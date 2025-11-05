@@ -1,0 +1,60 @@
+Date: 26-08-2025 & 02-09-2025
+
+Aim
+To define an abstract Vehicle with a rental rate and abstract method.
+To implement Car, Bike, Truck with specific cost calculation.
+To compute and display rate and total cost for given days.
+Algorithm
+Read carRate, bikeRate, truckRate, and rentalDays (integers).
+Define abstract class Vehicle with rate and calculateRentalCost(days).
+Implement Car/Bike/Truck classes overriding cost method.
+Instantiate each vehicle with the corresponding rate.
+Print rental rate per day for each type.
+Print total rental cost = rate × days for each type.
+End program.
+Program (Java)
+import java.util.*;
+abstract class Vehicle {
+    protected int rate;
+    public Vehicle(int rate){ this.rate = rate; }
+    public abstract int calculateRentalCost(int days);
+}
+class Car extends Vehicle {
+    public Car(int rate){ super(rate); }
+    public int calculateRentalCost(int days){ return rate * days; }
+}
+class Bike extends Vehicle {
+    public Bike(int rate){ super(rate); }
+    public int calculateRentalCost(int days){ return rate * days; }
+}
+class Truck extends Vehicle {
+    public Truck(int rate){ super(rate); }
+    public int calculateRentalCost(int days){ return rate * days; }
+}
+public class VehicleRentalApp {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int carRate = Integer.parseInt(sc.nextLine().trim());
+        int bikeRate = Integer.parseInt(sc.nextLine().trim());
+        int truckRate = Integer.parseInt(sc.nextLine().trim());
+        int days = Integer.parseInt(sc.nextLine().trim());
+        Vehicle car = new Car(carRate);
+        Vehicle bike = new Bike(bikeRate);
+        Vehicle truck = new Truck(truckRate);
+        System.out.println("Rental Rate: " + carRate + " per day");
+        System.out.println("Total Rental Cost for Car: " + car.calculateRentalCost(days));
+        System.out.println("Rental Rate: " + bikeRate + " per day");
+        System.out.println("Total Rental Cost for Bike: " + bike.calculateRentalCost(days));
+        System.out.println("Rental Rate: " + truckRate + " per day");
+        System.out.println("Total Rental Cost for Truck: " + truck.calculateRentalCost(days));
+        sc.close();
+    }
+}
+
+
+Sample Output
+Rental Rate: 1000 per day
+Total Rental Cost for Car: 7000
+Result
+Implemented abstraction and concrete subclasses for vehicles.
+Calculated total cost as rate × days for each type.
